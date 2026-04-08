@@ -15,7 +15,7 @@ thiserror = "2.0"
 bincode = {version = "2.0", features = ["serde"]}
 blake2b_simd = "1.0"
 chacha20 = "0.9"
-halo2_gadgets = "0.3"
+halo2_gadgets = "0.4"
 halo2_proofs = "0.3"
 jubjub = "0.10"
 secp256k1 = "0.29"
