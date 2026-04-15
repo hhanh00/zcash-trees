@@ -3,6 +3,7 @@ use zcash_protocol::{
     local_consensus::LocalNetwork,
 };
 
+/// Zcash network variant.
 #[derive(Copy, Clone, Debug)]
 pub enum Network {
     Main,

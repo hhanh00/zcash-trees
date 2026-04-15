@@ -6,6 +6,10 @@ use zcash_encoding::{Optional, Vector};
 
 use super::{Edge, Hasher, MERKLE_DEPTH};
 
+/// Legacy commitment tree frontier format (used by lightwalletd serialization).
+///
+/// Stores the left leaf, optional right leaf, and a list of parent hashes for
+/// partially-completed subtrees.
 #[derive(Default, Debug)]
 pub struct CommitmentTreeFrontier {
     pub left: Option<Hash32>,
@@ -14,6 +18,7 @@ pub struct CommitmentTreeFrontier {
 }
 
 impl CommitmentTreeFrontier {
+    /// Deserializes a frontier from the lightwalletd consensus format.
     pub fn read<R: Read>(mut reader: R) -> std::io::Result<Self> {
         let left = Optional::read(&mut reader, Self::hash_read)?;
         let right = Optional::read(&mut reader, Self::hash_read)?;
@@ -26,6 +31,7 @@ impl CommitmentTreeFrontier {
         })
     }
 
+    /// Serializes the frontier in lightwalletd consensus format.
     pub fn write<W: Write>(&self, mut writer: W) -> std::io::Result<()> {
         Optional::write(&mut writer, self.left.as_ref(), |w, h| w.write_all(h))?;
         Optional::write(&mut writer, self.right.as_ref(), |w, h| w.write_all(h))?;
@@ -35,6 +41,7 @@ impl CommitmentTreeFrontier {
         Ok(())
     }
 
+    /// Returns the total number of leaves in this frontier.
     pub fn size(&self) -> usize {
         self.parents.iter().enumerate().fold(
             match (self.left.as_ref(), self.right.as_ref()) {
@@ -53,6 +60,7 @@ impl CommitmentTreeFrontier {
         Ok(repr)
     }
 
+    /// Converts the frontier into an [`Edge`] using the given hasher.
     pub fn to_edge<H: Hasher>(&self, h: &H) -> Edge {
         let mut edge = [None; MERKLE_DEPTH as usize];
         let mut prev = self.left;
@@ -81,14 +89,17 @@ impl CommitmentTreeFrontier {
     }
 }
 
+/// Placeholder for a commitment-based witness (not yet implemented).
 pub struct CommitmentWitness {}
 
+/// Alias for the `incrementalmerkletree` Orchard frontier, available with the `imt` feature.
 #[cfg(feature = "imt")]
 pub type OrchardFrontier =
     incrementalmerkletree::frontier::Frontier<MerkleHashOrchard, MERKLE_DEPTH>;
 
 #[cfg(feature = "imt")]
 impl CommitmentTreeFrontier {
+    /// Converts an `incrementalmerkletree` Orchard frontier into this crate's format.
     pub fn from_orchard_frontier(frontier: &OrchardFrontier) -> Self {
         let Some(nef) = frontier.value() else {
             return CommitmentTreeFrontier::default();
@@ -117,6 +128,7 @@ impl CommitmentTreeFrontier {
         CommitmentTreeFrontier { left, right, parents }
     }
 
+    /// Converts back into an `incrementalmerkletree` Orchard frontier.
     pub fn to_orchard_frontier(self) -> OrchardFrontier {
         let size = self.size();
         if size == 0 {

@@ -4,6 +4,7 @@ use crate::{
 };
 use anyhow::Result;
 
+/// A Merkle path of arbitrary depth `D`.
 pub struct MerklePath<const D: usize> {
     pub value: Hash32,
     pub position: u32,
@@ -11,6 +12,8 @@ pub struct MerklePath<const D: usize> {
 }
 
 impl AuthPath {
+    /// Computes the Merkle root by combining the leaf value with sibling hashes
+    /// along the path according to the given position.
     pub fn root<H: Hasher>(&self, position: u32, value: &[u8; 32], h: &H) -> Hash32 {
         let mut hash = *value;
         let mut p = position;
@@ -35,6 +38,8 @@ fn divergence_height(a: u32, b: u32) -> usize {
 }
 
 impl Witness {
+    /// Rewinds the witness to an earlier tree state by clearing ommers that
+    /// were filled after the given edge position.
     pub fn rewind(self, edge_position: u32) -> Self {
         let Witness {
             value,
@@ -60,6 +65,8 @@ impl Witness {
         }
     }
 
+    /// Builds a full authentication path by filling in missing ommers from the
+    /// edge's partial subtree and empty roots.
     pub fn build_auth_path(
         &self,
         edge: &FragmentAuthPath,
@@ -96,6 +103,8 @@ impl Witness {
         Ok(path)
     }
 
+    /// Computes the Merkle root for this witness, using the provided edge to
+    /// fill in the right-side subtree at the first gap.
     pub fn root<H: Hasher>(&self, edge: &AuthPath, h: &H) -> Hash32 {
         let mut hash = self.value;
         let mut p = self.position;

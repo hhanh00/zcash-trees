@@ -1,5 +1,6 @@
 use crate::warp::Witness;
 
+/// Errors that can occur during warp sync.
 #[derive(thiserror::Error, Debug)]
 pub enum SyncError {
     #[error("Reorganization detected at block {0}")]
@@ -12,6 +13,7 @@ pub enum SyncError {
     Other(#[from] anyhow::Error),
 }
 
+/// A wallet transaction record.
 #[derive(Default, Debug)]
 pub struct Transaction {
     pub id: u32,
@@ -34,13 +36,16 @@ impl std::fmt::Display for Transaction {
     }
 }
 
+/// A shielded UTXO (unspent note) in the note commitment tree.
 #[derive(Default)]
 pub struct UTXO {
     pub id: u32,
+    /// Shielded pool identifier.
     pub pool: u8,
     pub account: u32,
     pub nullifier: Vec<u8>,
     pub value: u64,
+    /// Position in the note commitment tree.
     pub position: u32,
     pub cmx: Vec<u8>,
     pub witness: Witness,
@@ -71,6 +76,7 @@ impl std::fmt::Debug for UTXO {
     }
 }
 
+/// Minimal block header information.
 pub struct BlockHeader {
     pub height: u32,
     pub hash: Vec<u8>,
@@ -86,13 +92,16 @@ impl std::fmt::Debug for BlockHeader {
     }
 }
 
+/// A shielded note belonging to a wallet account.
 #[derive(Clone, Default)]
 pub struct Note {
     pub id: u32,
     pub account: u32,
     pub scope: u8,
     pub height: u32,
+    /// Position in the note commitment tree.
     pub position: u32,
+    /// Shielded pool identifier.
     pub pool: u8,
     pub id_tx: u32,
     pub vout: u32,
@@ -139,6 +148,7 @@ impl std::fmt::Debug for Note {
     }
 }
 
+/// Messages emitted during warp sync of the note commitment tree.
 #[derive(Debug)]
 pub enum WarpSyncMessage {
     BlockHeader(BlockHeader),

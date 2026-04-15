@@ -3,6 +3,7 @@ use jubjub::Fr;
 
 use super::{AuthPath, Hash32, Hasher, MERKLE_DEPTH};
 
+/// Merkle hasher for the Sapling shielded pool (Pedersen hashes over Jubjub).
 #[derive(Default, Debug)]
 pub struct SaplingHasher {}
 
@@ -29,11 +30,13 @@ impl Hasher for SaplingHasher {
     }
 }
 
+/// Merkle hasher for the Orchard shielded pool (Sinsemilla hashes over Pallas).
 #[derive(Debug)]
 pub struct OrchardHasher {
     pub(crate) q: Point,
 }
 
+/// Computes all 32 empty-root hashes (one per level) for a given hasher.
 pub fn empty_roots<H: Hasher>(h: &H) -> AuthPath {
     let mut empty = h.empty();
     let mut empty_roots = AuthPath::default();
