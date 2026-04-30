@@ -24,18 +24,6 @@ pub struct Transaction {
     pub value: i64,
 }
 
-impl std::fmt::Display for Transaction {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "txid {} {} @{}",
-            hex::encode(&self.txid),
-            self.account,
-            self.height
-        )
-    }
-}
-
 /// A shielded UTXO (unspent note) in the note commitment tree.
 #[derive(Default)]
 pub struct UTXO {
@@ -52,26 +40,14 @@ pub struct UTXO {
     pub txid: Vec<u8>,
 }
 
-impl std::fmt::Display for UTXO {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "{} {} {}",
-            self.account,
-            self.pool,
-            hex::encode(&self.nullifier)
-        )
-    }
-}
-
 impl std::fmt::Debug for UTXO {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("UTXO")
             .field("id", &self.id)
             .field("account", &self.account)
             .field("pool", &self.pool)
-            .field("txid", &hex::encode(&self.txid))
-            .field("cmx", &hex::encode(&self.cmx))
+            .field("txid", &hex::encode(&self.txid[..8]))
+            .field("cmx", &hex::encode(&self.cmx[..8]))
             .finish()
     }
 }
@@ -87,7 +63,7 @@ impl std::fmt::Debug for BlockHeader {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("BlockHeader")
             .field("height", &self.height)
-            .field("hash", &hex::encode(&self.hash))
+            .field("hash", &hex::encode(&self.hash[..8]))
             .finish()
     }
 }
@@ -115,20 +91,6 @@ pub struct Note {
     pub txid: Vec<u8>,
 }
 
-impl std::fmt::Display for Note {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "{} {} {} {} {}",
-            self.account,
-            self.height,
-            self.position,
-            self.pool,
-            hex::encode(&self.nf)
-        )
-    }
-}
-
 impl std::fmt::Debug for Note {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("Note")
@@ -139,17 +101,16 @@ impl std::fmt::Debug for Note {
             .field("pool", &self.pool)
             .field("id_tx", &self.id_tx)
             .field("vout", &self.vout)
-            .field("diversifier", &hex::encode(&self.diversifier))
+            .field("diversifier", &hex::encode(&self.diversifier[..8]))
             .field("value", &self.value)
-            .field("rcm", &hex::encode(&self.rcm))
-            .field("rho", &hex::encode(&self.rho))
-            .field("nf", &hex::encode(&self.nf))
+            .field("rcm", &hex::encode(&self.rcm[..8]))
+            .field("rho", &hex::encode(&self.rho[..8]))
+            .field("nf", &hex::encode(&self.nf[..8]))
             .finish()
     }
 }
 
 /// Messages emitted during warp sync of the note commitment tree.
-#[derive(Debug)]
 pub enum WarpSyncMessage {
     BlockHeader(BlockHeader),
     Transaction(Transaction),
@@ -162,24 +123,24 @@ pub enum WarpSyncMessage {
     Error(SyncError),
 }
 
-impl std::fmt::Display for WarpSyncMessage {
+impl std::fmt::Debug for WarpSyncMessage {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             WarpSyncMessage::BlockHeader(bh) => {
-                write!(f, "Header: {} {}", bh.height, hex::encode(&bh.hash))
+                write!(f, "Header: {} {}", bh.height, hex::encode(&bh.hash[..8]))
             }
-            WarpSyncMessage::Transaction(tx) => write!(f, "Tx: {tx}"),
-            WarpSyncMessage::Note(note) => write!(f, "Note: {note}"),
+            WarpSyncMessage::Transaction(tx) => write!(f, "Tx: {tx:?}"),
+            WarpSyncMessage::Note(note) => write!(f, "Note: {note:?}"),
             WarpSyncMessage::Witness(account, height, cmx, witness) => write!(
                 f,
-                "Witness for {account} @{height}: {} {witness}",
-                hex::encode(cmx)
+                "Witness for {account} @{height}: {} {witness:?}",
+                hex::encode(&cmx[..8])
             ),
             WarpSyncMessage::Checkpoint(_, pool, height) => {
                 write!(f, "Checkpoint for {pool} @{height}")
             }
             WarpSyncMessage::Commit => write!(f, "Commit"),
-            WarpSyncMessage::Spend(utxo) => write!(f, "Spend {utxo}"),
+            WarpSyncMessage::Spend(utxo) => write!(f, "Spend {utxo:?}"),
             WarpSyncMessage::Rewind(_, height) => write!(f, "Rewind to @{height}"),
             WarpSyncMessage::Error(e) => write!(f, "SyncError: {e:?}"),
         }

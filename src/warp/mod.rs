@@ -48,12 +48,6 @@ pub struct Witness {
     pub anchor: Hash32,
 }
 
-impl std::fmt::Display for Witness {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{} {} {}", self.position, hex::encode(self.value), hex::encode(self.anchor))
-    }
-}
-
 /// A block header with hash and parent hash as fixed-size arrays.
 #[derive(Clone, Default, Encode, Decode, Debug)]
 pub struct BlockHeader {
