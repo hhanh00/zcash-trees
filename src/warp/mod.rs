@@ -39,13 +39,23 @@ pub struct FragmentAuthPath(pub AuthPath, pub u32);
 ///
 /// Tracks the leaf value, its position, the ommers (sibling subtrees), and the
 /// tree anchor (root at the time the witness was created).
-#[derive(Clone, Default, Encode, Decode, PartialEq, Debug)]
+#[derive(Clone, Default, Encode, Decode, PartialEq)]
 pub struct Witness {
     pub value: Hash32,
     pub position: u32,
     pub ommers: Edge,
     /// Tree root at the time this witness was recorded (for debugging).
     pub anchor: Hash32,
+}
+
+impl std::fmt::Debug for Witness {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        // ommers, anchors are not printed out
+        f.debug_struct("Witness")
+            .field("value", &hex::encode(&self.value[..8]))
+            .field("position", &self.position)
+            .finish()
+    }
 }
 
 /// A block header with hash and parent hash as fixed-size arrays.

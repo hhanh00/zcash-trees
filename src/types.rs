@@ -104,7 +104,7 @@ impl std::fmt::Debug for Note {
             .field("diversifier", &hex::encode(&self.diversifier[..8]))
             .field("value", &self.value)
             .field("rcm", &hex::encode(&self.rcm[..8]))
-            .field("rho", &hex::encode(&self.rho[..8]))
+            .field("rho", &hex::encode(&self.rho[..8.min(self.rho.len())]))
             .field("nf", &hex::encode(&self.nf[..8]))
             .finish()
     }
