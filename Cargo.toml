@@ -23,9 +23,9 @@ zip32 = "0.2.1"
 
 orchard = {version = "0.13"}
 sapling-crypto = "0.7"
-zcash_encoding = "0.3"
+zcash_encoding = "0.4"
 zcash_protocol = {version = "0.8", features = ["local-consensus"]}
-zcash_transparent = {version = "0.6", features = ["transparent-inputs"]}
+zcash_transparent = {version = "0.7", features = ["transparent-inputs"]}
 
 incrementalmerkletree = {version = "0.8", optional = true}
 
