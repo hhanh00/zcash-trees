@@ -21,7 +21,7 @@ jubjub = "0.10"
 secp256k1 = "0.29"
 zip32 = "0.2.1"
 
-orchard = {version = "0.12"}
+orchard = {version = "0.13"}
 sapling-crypto = "0.5"
 zcash_encoding = "0.3"
 zcash_protocol = {version = "0.7", features = ["local-consensus"]}
