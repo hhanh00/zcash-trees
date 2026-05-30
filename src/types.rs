@@ -89,6 +89,8 @@ pub struct Note {
     pub ivtx: u32,
     pub cmx: Vec<u8>,
     pub txid: Vec<u8>,
+    /// AssetBase bytes for ZSA notes; empty for vanilla ZEC notes.
+    pub asset_base: Vec<u8>,
 }
 
 impl std::fmt::Debug for Note {
