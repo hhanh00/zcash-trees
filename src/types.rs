@@ -112,17 +112,38 @@ impl std::fmt::Debug for Note {
     }
 }
 
+/// ZSA issuance metadata discovered from a CompactBlock's issue bundle.
+pub struct Issuance {
+    pub asset_desc_hash: Vec<u8>,
+    pub ik: Vec<u8>,
+    pub asset_base: Vec<u8>,
+    pub finalized: bool,
+    pub height: u32,
+}
+
 /// Messages emitted during warp sync of the note commitment tree.
 pub enum WarpSyncMessage {
     BlockHeader(BlockHeader),
     Transaction(Transaction),
     Note(Note),
+    Issuance(Issuance),
     Witness(u32, u32, Vec<u8>, Witness),
     Checkpoint(Vec<u32>, u8, u32),
     Commit,
     Spend(UTXO),
     Rewind(Vec<u32>, u32),
     Error(SyncError),
+}
+
+impl std::fmt::Debug for Issuance {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Issuance")
+            .field("asset_desc_hash", &hex::encode(&self.asset_desc_hash[..8]))
+            .field("ik", &hex::encode(&self.ik[..8]))
+            .field("height", &self.height)
+            .field("finalized", &self.finalized)
+            .finish()
+    }
 }
 
 impl std::fmt::Debug for WarpSyncMessage {
@@ -133,6 +154,7 @@ impl std::fmt::Debug for WarpSyncMessage {
             }
             WarpSyncMessage::Transaction(tx) => write!(f, "Tx: {tx:?}"),
             WarpSyncMessage::Note(note) => write!(f, "Note: {note:?}"),
+            WarpSyncMessage::Issuance(iss) => write!(f, "Issuance: {iss:?}"),
             WarpSyncMessage::Witness(account, height, cmx, witness) => write!(
                 f,
                 "Witness for {account} @{height}: {} {witness:?}",
