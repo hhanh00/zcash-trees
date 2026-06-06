@@ -1290,7 +1290,7 @@ dependencies = [
  "secp256k1",
  "thiserror 2.0.18",
  "zcash_encoding",
- "zcash_protocol",
+ "zcash_protocol 0.9.0",
  "zcash_transparent",
  "zip32",
 ]
@@ -1306,7 +1306,7 @@ dependencies = [
  "corez",
  "f4jumble",
  "zcash_encoding",
- "zcash_protocol",
+ "zcash_protocol 0.8.0",
 ]
 
 [[package]]
@@ -1338,6 +1338,19 @@ name = "zcash_protocol"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "79ef3de16a4464a574591aa3e4ea875116372638307d7ae04415279ec187ba88"
+dependencies = [
+ "corez",
+ "document-features",
+ "hex",
+ "memuse",
+ "zcash_encoding",
+]
+
+[[package]]
+name = "zcash_protocol"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5bec496a0bd62dae98c4b26f51c5dab112d0c5350bbc2ccfdfd05bb3454f714d"
 dependencies = [
  "corez",
  "document-features",
@@ -1391,7 +1404,7 @@ dependencies = [
  "subtle",
  "zcash_address",
  "zcash_encoding",
- "zcash_protocol",
+ "zcash_protocol 0.8.0",
  "zcash_script",
  "zcash_spec",
  "zip32",
