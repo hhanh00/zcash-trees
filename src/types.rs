@@ -14,7 +14,7 @@ pub enum SyncError {
 }
 
 /// A wallet transaction record.
-#[derive(Default, Debug)]
+#[derive(Default)]
 pub struct Transaction {
     pub id: u32,
     pub txid: Vec<u8>,
@@ -22,6 +22,19 @@ pub struct Transaction {
     pub account: u32,
     pub time: u32,
     pub value: i64,
+}
+
+impl std::fmt::Debug for Transaction {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Transaction")
+            .field("id", &self.id)
+            .field("txid", &hex::encode(&self.txid[..8]))
+            .field("height", &self.height)
+            .field("account", &self.account)
+            .field("time", &self.time)
+            .field("value", &self.value)
+            .finish()
+    }
 }
 
 /// A shielded UTXO (unspent note) in the note commitment tree.
@@ -46,8 +59,12 @@ impl std::fmt::Debug for UTXO {
             .field("id", &self.id)
             .field("account", &self.account)
             .field("pool", &self.pool)
-            .field("txid", &hex::encode(&self.txid[..8]))
+            .field("nullifier", &hex::encode(&self.nullifier[..8]))
+            .field("value", &self.value)
+            .field("position", &self.position)
             .field("cmx", &hex::encode(&self.cmx[..8]))
+            .field("witness", &self.witness)
+            .field("txid", &hex::encode(&self.txid[..8]))
             .finish()
     }
 }
@@ -64,6 +81,7 @@ impl std::fmt::Debug for BlockHeader {
         f.debug_struct("BlockHeader")
             .field("height", &self.height)
             .field("hash", &hex::encode(&self.hash[..8]))
+            .field("time", &self.time)
             .finish()
     }
 }
@@ -98,6 +116,7 @@ impl std::fmt::Debug for Note {
         f.debug_struct("Note")
             .field("id", &self.id)
             .field("account", &self.account)
+            .field("scope", &self.scope)
             .field("height", &self.height)
             .field("position", &self.position)
             .field("pool", &self.pool)
@@ -108,6 +127,10 @@ impl std::fmt::Debug for Note {
             .field("rcm", &hex::encode(&self.rcm[..8]))
             .field("rho", &hex::encode(&self.rho[..8.min(self.rho.len())]))
             .field("nf", &hex::encode(&self.nf[..8]))
+            .field("ivtx", &self.ivtx)
+            .field("cmx", &hex::encode(&self.cmx[..8]))
+            .field("txid", &hex::encode(&self.txid[..8]))
+            .field("asset_base", &hex::encode(&self.asset_base[..8.min(self.asset_base.len())]))
             .finish()
     }
 }
@@ -140,6 +163,7 @@ impl std::fmt::Debug for Issuance {
         f.debug_struct("Issuance")
             .field("asset_desc_hash", &hex::encode(&self.asset_desc_hash[..8]))
             .field("ik", &hex::encode(&self.ik[..8]))
+            .field("asset_base", &hex::encode(&self.asset_base[..8.min(self.asset_base.len())]))
             .field("height", &self.height)
             .field("finalized", &self.finalized)
             .finish()
