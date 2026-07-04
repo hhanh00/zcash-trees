@@ -27,12 +27,6 @@ zcash_encoding = "0.4"
 zcash_protocol = {version = "0.10.0-pre.0", features = ["local-consensus"]}
 zcash_transparent = {version = "0.9.0-pre.0", features = ["transparent-inputs"]}
 
-[patch.crates-io]
-orchard = { git = "https://github.com/zcash-shielded-assets/orchard", rev = "7b6ada86692b66a21e6a0e0656c9ef76b39b168b" }
-sapling-crypto = { git = "https://github.com/hhanh00/sapling-crypto", rev = "869b1701aa876905f2b8e979a9cae38fe41d08ee" }
-zcash_note_encryption = { git = "https://github.com/zcash-shielded-assets/zcash_note_encryption", rev = "cb10e9f3516e76d1a18e4e037243ef9c237cb415" }
-zcash_primitives = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "7bfb7b4b541d1d514ced73f646da4c6e15b7dbdd" }
-
 incrementalmerkletree = {version = "0.8", optional = true}
 
 [features]
