@@ -1,5 +1,5 @@
 use zcash_protocol::{
-    consensus::{BlockHeight, MainNetwork, NetworkType, NetworkUpgrade, Parameters, TestNetwork},
+    consensus::{BlockHeight, MainNetwork, NetworkType, NetworkUpgrade, OrchardMode, Parameters, TestNetwork},
     local_consensus::LocalNetwork,
 };
 
@@ -25,6 +25,14 @@ impl Parameters for Network {
             Network::Main => MainNetwork.activation_height(nu),
             Network::Test => TestNetwork.activation_height(nu),
             Network::Regtest(n) => n.activation_height(nu),
+        }
+    }
+
+    fn orchard_mode(&self) -> OrchardMode {
+        match self {
+            Network::Main => MainNetwork.orchard_mode(),
+            Network::Test => TestNetwork.orchard_mode(),
+            Network::Regtest(n) => n.orchard_mode(),
         }
     }
 }
