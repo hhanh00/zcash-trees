@@ -36,4 +36,3 @@ zcash_primitives = { git = "https://github.com/zcash-shielded-assets/librustzcas
 incrementalmerkletree = {version = "0.8", optional = true}
 
 [features]
-imt = ["dep:incrementalmerkletree"]
