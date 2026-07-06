@@ -9,6 +9,8 @@ pub enum Network {
     Main,
     Test,
     Regtest(LocalNetwork),
+    /// ZSA regtest network (NU7, no Ironwood).
+    ZsaRegtest(LocalNetwork),
 }
 
 impl Parameters for Network {
@@ -16,7 +18,7 @@ impl Parameters for Network {
         match self {
             Network::Main => MainNetwork.network_type(),
             Network::Test => TestNetwork.network_type(),
-            Network::Regtest(n) => n.network_type(),
+            Network::Regtest(n) | Network::ZsaRegtest(n) => n.network_type(),
         }
     }
 
@@ -24,7 +26,7 @@ impl Parameters for Network {
         match self {
             Network::Main => MainNetwork.activation_height(nu),
             Network::Test => TestNetwork.activation_height(nu),
-            Network::Regtest(n) => n.activation_height(nu),
+            Network::Regtest(n) | Network::ZsaRegtest(n) => n.activation_height(nu),
         }
     }
 
@@ -32,7 +34,7 @@ impl Parameters for Network {
         match self {
             Network::Main => MainNetwork.orchard_mode(),
             Network::Test => TestNetwork.orchard_mode(),
-            Network::Regtest(n) => n.orchard_mode(),
+            Network::Regtest(n) | Network::ZsaRegtest(n) => n.orchard_mode(),
         }
     }
 }

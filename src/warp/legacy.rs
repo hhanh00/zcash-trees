@@ -1,5 +1,5 @@
 use crate::Hash32;
-#[cfg(feature = "imt")]
+#[cfg(feature = "incrementalmerkletree")]
 use orchard::tree::MerkleHashOrchard;
 use std::io::{Read, Write};
 use zcash_encoding::{Optional, Vector};
@@ -93,11 +93,11 @@ impl CommitmentTreeFrontier {
 pub struct CommitmentWitness {}
 
 /// Alias for the `incrementalmerkletree` Orchard frontier, available with the `imt` feature.
-#[cfg(feature = "imt")]
+#[cfg(feature = "incrementalmerkletree")]
 pub type OrchardFrontier =
     incrementalmerkletree::frontier::Frontier<MerkleHashOrchard, MERKLE_DEPTH>;
 
-#[cfg(feature = "imt")]
+#[cfg(feature = "incrementalmerkletree")]
 impl CommitmentTreeFrontier {
     /// Converts an `incrementalmerkletree` Orchard frontier into this crate's format.
     pub fn from_orchard_frontier(frontier: &OrchardFrontier) -> Self {
@@ -167,7 +167,7 @@ mod tests {
         legacy::CommitmentTreeFrontier, Witness,
     };
 
-    #[cfg(feature = "imt")]
+    #[cfg(feature = "incrementalmerkletree")]
     #[test]
     fn tree_state() {
         use crate::warp::hasher::OrchardHasher;
@@ -187,7 +187,7 @@ mod tests {
         println!("root: {}", hex::encode(root0));
     }
 
-    #[cfg(feature = "imt")]
+    #[cfg(feature = "incrementalmerkletree")]
     #[test]
     fn rewind() {
         // actual witness data from real note
