@@ -21,19 +21,10 @@ jubjub = "0.10"
 secp256k1 = "0.29"
 zip32 = "0.2.1"
 
-orchard = { git = "https://github.com/zcash-shielded-assets/orchard", rev = "675823f3f8d7e2f6ea2615d5d81662b0eb0f538a" }
-sapling-crypto = { git = "https://github.com/hhanh00/sapling-crypto", rev = "bf29f9732eeaa417b63982aa8001acb542343b83" }
-zcash_encoding = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "136b15d8" }
-zcash_protocol = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "136b15d8", features = ["local-consensus"] }
-zcash_transparent = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "136b15d8", features = ["transparent-inputs"] }
+orchard = {version = "0.15.0-pre.1", features = ["zsa"]}
+sapling-crypto = "0.7"
+zcash_encoding = "0.4"
+zcash_protocol = {version = "0.10.0-pre.0", features = ["local-consensus"]}
+zcash_transparent = {version = "0.9.0-pre.0", features = ["transparent-inputs"]}
 
 incrementalmerkletree = {version = "0.8", optional = true}
-
-[patch.crates-io]
-orchard = { git = "https://github.com/zcash-shielded-assets/orchard", rev = "675823f3f8d7e2f6ea2615d5d81662b0eb0f538a" }
-zcash_spec = { git = "https://github.com/zcash-shielded-assets/zcash_spec", rev = "d5e84264d2ad0646b587a837f4e2424ca64d3a05" }
-sinsemilla = { git = "https://github.com/zcash/sinsemilla", rev = "aabb707e862bc3d7b803c77d14e5a771bcee3e8c" }
-halo2_gadgets = { git = "https://github.com/zcash-shielded-assets/halo2", rev = "d687ce0e3e913549cab370ec66765e6d59d4612f" }
-halo2_proofs = { git = "https://github.com/zcash-shielded-assets/halo2", rev = "d687ce0e3e913549cab370ec66765e6d59d4612f" }
-halo2_poseidon = { git = "https://github.com/zcash-shielded-assets/halo2", rev = "d687ce0e3e913549cab370ec66765e6d59d4612f" }
-zcash_note_encryption = { git = "https://github.com/zcash-shielded-assets/zcash_note_encryption", rev = "57d048381d376f71ce6ba753d7876ef04b6e57cb" }
