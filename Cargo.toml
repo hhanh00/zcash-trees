@@ -23,9 +23,9 @@ zip32 = "0.2.1"
 
 orchard = { git = "https://github.com/zcash-shielded-assets/orchard", rev = "675823f3f8d7e2f6ea2615d5d81662b0eb0f538a" }
 sapling-crypto = { git = "https://github.com/hhanh00/sapling-crypto", rev = "bf29f9732eeaa417b63982aa8001acb542343b83" }
-zcash_encoding = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "136b15d8" }
-zcash_protocol = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "136b15d8", features = ["local-consensus"] }
-zcash_transparent = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "136b15d8", features = ["transparent-inputs"] }
+zcash_encoding = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "c98b772d" }
+zcash_protocol = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "c98b772d", features = ["local-consensus"] }
+zcash_transparent = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "c98b772d", features = ["transparent-inputs"] }
 
 incrementalmerkletree = {version = "0.8", optional = true}
 
