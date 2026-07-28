@@ -385,7 +385,7 @@ checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
 [[package]]
 name = "f4jumble"
 version = "0.1.1"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=c98b772d#c98b772dbf218c951aaa47e842d722c3c6aabc85"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b#fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b"
 dependencies = [
  "blake2b_simd",
 ]
@@ -475,7 +475,7 @@ dependencies = [
 [[package]]
 name = "halo2_gadgets"
 version = "0.5.0"
-source = "git+https://github.com/zcash-shielded-assets/halo2?rev=d687ce0e3e913549cab370ec66765e6d59d4612f#d687ce0e3e913549cab370ec66765e6d59d4612f"
+source = "git+https://github.com/zcash-shielded-assets/halo2?rev=dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00#dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00"
 dependencies = [
  "arrayvec",
  "bitvec",
@@ -500,7 +500,7 @@ checksum = "47716fe1ae67969c5e0b2ef826f32db8c3be72be325e1aa3c1951d06b5575ec5"
 [[package]]
 name = "halo2_poseidon"
 version = "0.1.0"
-source = "git+https://github.com/zcash-shielded-assets/halo2?rev=d687ce0e3e913549cab370ec66765e6d59d4612f#d687ce0e3e913549cab370ec66765e6d59d4612f"
+source = "git+https://github.com/zcash-shielded-assets/halo2?rev=dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00#dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00"
 dependencies = [
  "bitvec",
  "ff",
@@ -510,8 +510,8 @@ dependencies = [
 
 [[package]]
 name = "halo2_proofs"
-version = "0.3.2"
-source = "git+https://github.com/zcash-shielded-assets/halo2?rev=d687ce0e3e913549cab370ec66765e6d59d4612f#d687ce0e3e913549cab370ec66765e6d59d4612f"
+version = "0.3.4"
+source = "git+https://github.com/zcash-shielded-assets/halo2?rev=dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00#dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00"
 dependencies = [
  "blake2b_simd",
  "ff",
@@ -709,8 +709,8 @@ checksum = "c08d65885ee38876c4f86fa503fb49d7b507c2b62552df7c70b2fce627e06381"
 
 [[package]]
 name = "orchard"
-version = "0.15.0-pre.1"
-source = "git+https://github.com/zcash-shielded-assets/orchard?rev=7bc6c6f3b48ace8db768f3145f86ffb1593b83e0#7bc6c6f3b48ace8db768f3145f86ffb1593b83e0"
+version = "0.15.4"
+source = "git+https://github.com/zcash-shielded-assets/orchard?rev=4cf06bc19e52d1e8e43438cdbdd703ac2565bff6#4cf06bc19e52d1e8e43438cdbdd703ac2565bff6"
 dependencies = [
  "aes",
  "bitvec",
@@ -753,9 +753,9 @@ dependencies = [
 
 [[package]]
 name = "pasta_curves"
-version = "0.5.1"
+version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d3e57598f73cc7e1b2ac63c79c517b31a0877cd7c402cdcaa311b5208de7a095"
+checksum = "3437083215c505e867eea5478371feba43d7689d6d15ec0a209eb46fb0d4cda6"
 dependencies = [
  "blake2b_simd",
  "ff",
@@ -939,7 +939,7 @@ dependencies = [
 [[package]]
 name = "sapling-crypto"
 version = "0.7.0"
-source = "git+https://github.com/hhanh00/sapling-crypto?rev=bf29f9732eeaa417b63982aa8001acb542343b83#bf29f9732eeaa417b63982aa8001acb542343b83"
+source = "git+https://github.com/hhanh00/sapling-crypto?rev=fb16242558b7119d2cb29e752ba9590ad905a5bf#fb16242558b7119d2cb29e752ba9590ad905a5bf"
 dependencies = [
  "aes",
  "bellman",
@@ -1282,7 +1282,7 @@ dependencies = [
  "sapling-crypto",
  "secp256k1",
  "thiserror 2.0.18",
- "zcash_encoding",
+ "zcash_encoding 0.5.0",
  "zcash_protocol",
  "zcash_transparent",
  "zip32",
@@ -1290,21 +1290,32 @@ dependencies = [
 
 [[package]]
 name = "zcash_address"
-version = "0.13.0-pre.0"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=c98b772d#c98b772dbf218c951aaa47e842d722c3c6aabc85"
+version = "0.13.0"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b#fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b"
 dependencies = [
  "bech32",
  "bs58",
  "corez",
  "f4jumble",
- "zcash_encoding",
+ "zcash_encoding 0.4.0",
  "zcash_protocol",
 ]
 
 [[package]]
 name = "zcash_encoding"
 version = "0.4.0"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=c98b772d#c98b772dbf218c951aaa47e842d722c3c6aabc85"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1440921903cdb86133fb9e2fe800be488015db2939a30bedb413078a1acb0306"
+dependencies = [
+ "corez",
+ "hex",
+ "nonempty",
+]
+
+[[package]]
+name = "zcash_encoding"
+version = "0.5.0"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b#fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b"
 dependencies = [
  "corez",
  "hex",
@@ -1313,8 +1324,8 @@ dependencies = [
 
 [[package]]
 name = "zcash_note_encryption"
-version = "0.4.1"
-source = "git+https://github.com/zcash-shielded-assets/zcash_note_encryption?rev=57d048381d376f71ce6ba753d7876ef04b6e57cb#57d048381d376f71ce6ba753d7876ef04b6e57cb"
+version = "0.4.2"
+source = "git+https://github.com/zcash-shielded-assets/zcash_note_encryption?rev=bc7a9370e1a7253cf496f24aa0bd4d0e49c3977e#bc7a9370e1a7253cf496f24aa0bd4d0e49c3977e"
 dependencies = [
  "chacha20",
  "chacha20poly1305",
@@ -1325,14 +1336,14 @@ dependencies = [
 
 [[package]]
 name = "zcash_protocol"
-version = "0.10.0-pre.0"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=c98b772d#c98b772dbf218c951aaa47e842d722c3c6aabc85"
+version = "0.10.1"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b#fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b"
 dependencies = [
  "corez",
  "document-features",
  "hex",
  "memuse",
- "zcash_encoding",
+ "zcash_encoding 0.4.0",
 ]
 
 [[package]]
@@ -1362,8 +1373,8 @@ dependencies = [
 
 [[package]]
 name = "zcash_transparent"
-version = "0.9.0-pre.0"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=c98b772d#c98b772dbf218c951aaa47e842d722c3c6aabc85"
+version = "0.10.0"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash?rev=fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b#fc0481f98746ef99d9b4e64cda58e0a2f1f95b2b"
 dependencies = [
  "bip32",
  "bs58",
@@ -1377,7 +1388,7 @@ dependencies = [
  "sha2 0.10.9",
  "subtle",
  "zcash_address",
- "zcash_encoding",
+ "zcash_encoding 0.4.0",
  "zcash_protocol",
  "zcash_script",
  "zcash_spec",
