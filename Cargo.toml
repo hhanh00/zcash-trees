@@ -15,28 +15,24 @@ thiserror = "2.0"
 bincode = {version = "2.0", features = ["serde"]}
 blake2b_simd = "1.0"
 chacha20 = "0.9"
-halo2_gadgets = "0.5"
-halo2_proofs = "0.3"
-jubjub = "0.10"
+halo2_gadgets = "0.6"
+halo2_proofs = "0.4"
+jubjub = "0.11"
 secp256k1 = "0.29"
-zip32 = "0.2.1"
+zip32 = "0.3"
 
-orchard = { git = "https://github.com/zcash-shielded-assets/orchard", rev = "4cf06bc19e52d1e8e43438cdbdd703ac2565bff6" }
-sapling-crypto = { git = "https://github.com/zcash-shielded-assets/sapling-crypto", rev = "4c47c84845436aa1b650bd5367ed4de67421cc0d" }
-zcash_encoding = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "85ec4a30a6f2b3f3e6b8f70c575f456b3a5cc029" }
-zcash_protocol = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "85ec4a30a6f2b3f3e6b8f70c575f456b3a5cc029", features = ["local-consensus"] }
-zcash_transparent = { git = "https://github.com/zcash-shielded-assets/librustzcash", rev = "85ec4a30a6f2b3f3e6b8f70c575f456b3a5cc029", features = ["transparent-inputs"] }
+orchard = { git = "https://github.com/zcash-shielded-assets/orchard.git", rev = "533183ea431fbb99b79db72110ead88d71b5ba04" }
+sapling-crypto = { git = "https://github.com/zcash-shielded-assets/sapling-crypto.git", rev = "b5538005f47213eca653a38617cfbb9a278c59bf" }
+zcash_encoding = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "48d974e452b3f3d6e0698d9bac9bdf0965b3d2af" }
+zcash_protocol = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "48d974e452b3f3d6e0698d9bac9bdf0965b3d2af", features = ["local-consensus"] }
+zcash_transparent = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "48d974e452b3f3d6e0698d9bac9bdf0965b3d2af", features = ["transparent-inputs"] }
 
-incrementalmerkletree = {version = "0.8", optional = true}
+incrementalmerkletree = {version = "0.9", optional = true}
 
+# Standalone builds pin the same crypto family as zkool.
 [patch.crates-io]
-# librustzcash (85ec4a30a6) moved to bip32 0.6.0-rc.0; stock zcash_script
-# still pins =0.6.0-pre.1. Drop once that lands upstream.
-zcash_script = { git = "https://github.com/hhanh00/zcash_script.git", rev = "49545c0268966fbbc155133f5c2e775bc1e97f57" }
-orchard = { git = "https://github.com/zcash-shielded-assets/orchard", rev = "4cf06bc19e52d1e8e43438cdbdd703ac2565bff6" }
 zcash_spec = { git = "https://github.com/zcash-shielded-assets/zcash_spec", rev = "d5e84264d2ad0646b587a837f4e2424ca64d3a05" }
-sinsemilla = { git = "https://github.com/zcash/sinsemilla", rev = "aabb707e862bc3d7b803c77d14e5a771bcee3e8c" }
-halo2_gadgets = { git = "https://github.com/zcash-shielded-assets/halo2", rev = "dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00" }
-halo2_proofs = { git = "https://github.com/zcash-shielded-assets/halo2", rev = "dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00" }
-halo2_poseidon = { git = "https://github.com/zcash-shielded-assets/halo2", rev = "dcdbd1df2b30fd8d709c1a7c4ad9c4e091789d00" }
-zcash_note_encryption = { git = "https://github.com/zcash-shielded-assets/zcash_note_encryption", rev = "bc7a9370e1a7253cf496f24aa0bd4d0e49c3977e" }
+halo2_gadgets = { git = "https://github.com/zcash-shielded-assets/halo2.git", rev = "0e3f1ea9dcba44fa4cd213b3f06b2aee3fc6e90e" }
+halo2_proofs = { git = "https://github.com/zcash-shielded-assets/halo2.git", rev = "0e3f1ea9dcba44fa4cd213b3f06b2aee3fc6e90e" }
+halo2_poseidon = { git = "https://github.com/zcash-shielded-assets/halo2.git", rev = "0e3f1ea9dcba44fa4cd213b3f06b2aee3fc6e90e" }
+zcash_note_encryption = { git = "https://github.com/zcash-shielded-assets/zcash_note_encryption.git", rev = "54d2360c3b16561d7c00167dc0af7358251469c9" }

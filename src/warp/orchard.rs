@@ -1,6 +1,6 @@
 use super::{hasher::OrchardHasher, Hash32, Hasher};
 use halo2_gadgets::sinsemilla::primitives::SINSEMILLA_S;
-use halo2_proofs::pasta::group::{ff::PrimeField as _, prime::PrimeCurveAffine as _, Curve as _};
+use halo2_proofs::pasta::group::{ff::PrimeField as _, Curve as _, CurveAffine as _};
 use halo2_proofs::{
     arithmetic::{CurveAffine as _, CurveExt as _},
     pasta::{
