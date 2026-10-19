@@ -23,9 +23,9 @@ zip32 = "0.3"
 
 orchard = { git = "https://github.com/zcash-shielded-assets/orchard.git", rev = "60697dd60ecbc14c7d8953316cea479944e605b8" }
 sapling-crypto = { git = "https://github.com/zcash-shielded-assets/sapling-crypto.git", rev = "8f2e47e0d7a3db15507825f4c49a540779c6082e" }
-zcash_encoding = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "c02df3cc303daa020b3d895a351a50afa1562818" }
-zcash_protocol = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "c02df3cc303daa020b3d895a351a50afa1562818", features = ["local-consensus"] }
-zcash_transparent = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "c02df3cc303daa020b3d895a351a50afa1562818", features = ["transparent-inputs"] }
+zcash_encoding = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "c42aab288e2e3eaf43afc2d62fe902bbd65a04c6" }
+zcash_protocol = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "c42aab288e2e3eaf43afc2d62fe902bbd65a04c6", features = ["local-consensus"] }
+zcash_transparent = { git = "https://github.com/zcash-shielded-assets/librustzcash.git", rev = "c42aab288e2e3eaf43afc2d62fe902bbd65a04c6", features = ["transparent-inputs"] }
 
 incrementalmerkletree = {version = "0.9", optional = true}
 
