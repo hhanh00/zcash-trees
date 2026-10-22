@@ -448,14 +448,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "877a4ace8713b0bcf2a4e7eec82529c029f1d0619886d18145fea96c3ffe5c0f"
 
 [[package]]
-name = "f4jumble"
-version = "0.1.2"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=c42aab288e2e3eaf43afc2d62fe902bbd65a04c6#c42aab288e2e3eaf43afc2d62fe902bbd65a04c6"
-dependencies = [
- "blake2b_simd",
-]
-
-[[package]]
 name = "ff"
 version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1452,22 +1444,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "zcash_address"
-version = "0.14.0-pre.1"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=c42aab288e2e3eaf43afc2d62fe902bbd65a04c6#c42aab288e2e3eaf43afc2d62fe902bbd65a04c6"
-dependencies = [
- "bech32",
- "bs58",
- "corez",
- "f4jumble",
- "zcash_encoding",
- "zcash_protocol",
-]
-
-[[package]]
 name = "zcash_encoding"
 version = "0.5.0"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=c42aab288e2e3eaf43afc2d62fe902bbd65a04c6#c42aab288e2e3eaf43afc2d62fe902bbd65a04c6"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=fb3b4de5c304d2f07b0d8bf96f87f0c8337c68d5#fb3b4de5c304d2f07b0d8bf96f87f0c8337c68d5"
 dependencies = [
  "corez",
  "hex",
@@ -1488,8 +1467,8 @@ dependencies = [
 
 [[package]]
 name = "zcash_protocol"
-version = "0.11.0-pre.0"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=c42aab288e2e3eaf43afc2d62fe902bbd65a04c6#c42aab288e2e3eaf43afc2d62fe902bbd65a04c6"
+version = "0.11.0"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=fb3b4de5c304d2f07b0d8bf96f87f0c8337c68d5#fb3b4de5c304d2f07b0d8bf96f87f0c8337c68d5"
 dependencies = [
  "corez",
  "document-features",
@@ -1525,8 +1504,8 @@ dependencies = [
 
 [[package]]
 name = "zcash_transparent"
-version = "0.11.0-pre.1"
-source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=c42aab288e2e3eaf43afc2d62fe902bbd65a04c6#c42aab288e2e3eaf43afc2d62fe902bbd65a04c6"
+version = "0.11.0"
+source = "git+https://github.com/zcash-shielded-assets/librustzcash.git?rev=fb3b4de5c304d2f07b0d8bf96f87f0c8337c68d5#fb3b4de5c304d2f07b0d8bf96f87f0c8337c68d5"
 dependencies = [
  "bip32",
  "bs58",
@@ -1539,7 +1518,6 @@ dependencies = [
  "secp256k1 0.33.1",
  "sha2 0.10.9",
  "subtle",
- "zcash_address",
  "zcash_encoding",
  "zcash_protocol",
  "zcash_script",
